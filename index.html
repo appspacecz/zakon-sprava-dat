@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zákon o správě dat — Přehled</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;font-family:'Roboto','Helvetica Neue',Arial,sans-serif;font-size:16px;line-height:1.6;color:#1a1a1a;background:#f5f5f5}
+:root{--p:#2362a2;--pd:#1a4a7f;--pl:#e8f0f9;--red:#c52a2a;--grn:#2e7d32;--org:#f57c00;--n9:#1a1a1a;--n7:#444;--n5:#767676;--n2:#e0e0e0;--n1:#f5f5f5;--w:#fff;--r:4px}
+.wrap{max-width:1200px;margin:0 auto;padding:0 16px}
+.skip{position:absolute;top:-40px;left:0;background:var(--p);color:#fff;padding:8px 16px;font-size:14px;text-decoration:none;z-index:100}
+.skip:focus{top:0}
+
+/* HEADER */
+.hdr{background:var(--w);border-bottom:4px solid var(--p)}
+.hdr-bar{background:var(--p);padding:8px 0}
+.hdr-bar-in{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;align-items:center;gap:12px}
+.hdr-bar-txt{color:#fff;font-size:13px}.hdr-bar-txt strong{font-weight:700;font-size:15px}
+.hdr-body{padding:24px 0 20px}
+.hdr-body-in{max-width:1200px;margin:0 auto;padding:0 16px}
+.hdr-eye{display:flex;align-items:center;gap:8px;margin-bottom:8px;flex-wrap:wrap}
+.tag{display:inline-block;font-size:12px;font-weight:500;padding:2px 10px;border-radius:2px;letter-spacing:.03em;text-transform:uppercase}
+.tag-p{background:var(--pl);color:var(--pd);border:1px solid #b3cde8}
+.tag-n{background:#f0f0f0;color:var(--n7);border:1px solid var(--n2)}
+.tag-s{background:#e8f5e9;color:var(--grn);border:1px solid #c8e6c9}
+.tag-w{background:#fff3e0;color:var(--org);border:1px solid #ffe0b2}
+.hdr-title{font-size:clamp(22px,3.5vw,34px);font-weight:700;color:var(--n9);margin:0 0 6px;line-height:1.2}
+.hdr-sub{font-size:15px;color:var(--n5);margin:0}
+.hdr-meta{display:flex;flex-wrap:wrap;margin-top:20px;border-top:1px solid var(--n2);padding-top:16px}
+.hdr-mi{padding:0 24px 0 0;margin-right:24px;border-right:1px solid var(--n2)}
+.hdr-mi:last-child{border-right:none}
+.hdr-ml{font-size:11px;font-weight:500;color:var(--n5);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.hdr-mv{font-size:14px;font-weight:500;color:var(--n9)}
+
+/* NAV */
+.nav{background:var(--w);border-bottom:1px solid var(--n2);position:sticky;top:0;z-index:50;box-shadow:0 2px 4px rgba(0,0,0,.06)}
+.nav-in{max-width:1200px;margin:0 auto;padding:0 16px;display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.nav-in::-webkit-scrollbar{display:none}
+.nav-tab{background:none;border:none;font-family:'Roboto',sans-serif;font-size:14px;font-weight:500;color:var(--n5);padding:14px 18px;cursor:pointer;white-space:nowrap;border-bottom:3px solid transparent;transition:all .15s;margin-bottom:-1px;-webkit-tap-highlight-color:rgba(35,98,162,.15);touch-action:manipulation;user-select:none}
+.nav-tab:hover{color:var(--p);background:var(--pl)}
+.nav-tab.active{color:var(--p);border-bottom-color:var(--p);font-weight:700}
+
+/* MAIN */
+main{padding:32px 0 64px;min-height:60vh}
+.sec{display:none}.sec.active{display:block}
+
+/* BREADCRUMB */
+.bc{font-size:13px;color:var(--n5);margin-bottom:24px;display:flex;align-items:center;gap:6px}
+.bc a{color:var(--p);text-decoration:none}.bc a:hover{text-decoration:underline}
+
+/* SECTION HEAD */
+.sh{font-size:24px;font-weight:700;color:var(--n9);margin:0 0 4px}
+.sl{font-size:15px;color:var(--n5);margin:0 0 28px;max-width:720px;border-bottom:1px solid var(--n2);padding-bottom:20px}
+
+/* STATS ROW */
+.stats{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px}
+.stat{flex:1;min-width:140px;background:var(--w);border:1px solid var(--n2);border-top:3px solid var(--p);border-radius:var(--r);padding:16px}
+.stat-num{font-size:22px;font-weight:700;color:var(--p);margin-bottom:4px;line-height:1.1}
+.stat-lbl{font-size:12px;color:var(--n5);line-height:1.4}
+
+/* INFOBAR */
+.info{background:var(--pl);border-left:4px solid var(--p);border-radius:var(--r);padding:16px 20px;margin-bottom:24px;font-size:14px;color:var(--n9);line-height:1.6}
+.info-w{background:#fff3e0;border-left-color:var(--org)}
+.info-d{background:#fdf3f3;border-left-color:var(--red)}
+.info strong{color:var(--pd)}
+
+/* CARDS */
+.cg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:28px}
+.card{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);padding:20px;transition:box-shadow .2s,border-color .2s}
+.card:hover{box-shadow:0 4px 16px rgba(35,98,162,.12);border-color:#b3cde8}
+.card-ico{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;margin-bottom:12px}
+.card-title{font-size:15px;font-weight:700;color:var(--n9);margin:0 0 6px}
+.card-text{font-size:13px;color:var(--n5);margin:0;line-height:1.6}
+
+/* ACCORDION */
+.acc{margin-bottom:28px}
+.acc-item{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);margin-bottom:6px;overflow:hidden}
+.acc-btn{width:100%;background:none;border:none;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;cursor:pointer;font-family:'Roboto',sans-serif;font-size:14px;font-weight:500;color:var(--n9);text-align:left;gap:12px;transition:background .15s}
+.acc-btn:hover{background:var(--pl)}
+.acc-item.open .acc-btn{background:var(--pl);color:var(--pd)}
+.acc-arr{font-size:12px;color:var(--n5);transition:transform .2s;flex-shrink:0}
+.acc-item.open .acc-arr{transform:rotate(180deg)}
+.acc-panel{display:none;padding:16px 18px 18px;border-top:1px solid var(--n2);font-size:14px;color:var(--n7);line-height:1.7}
+.acc-item.open .acc-panel{display:block}
+.acc-panel ul{padding-left:20px}.acc-panel li{margin-bottom:5px}
+
+/* STEPPER */
+.stepper{position:relative;margin-bottom:28px}
+.stepper::before{content:'';position:absolute;left:19px;top:28px;bottom:16px;width:2px;background:var(--n2)}
+.step{display:flex;gap:16px;margin-bottom:16px;position:relative}
+.step-badge{width:40px;height:40px;border-radius:50%;background:var(--p);color:#fff;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;position:relative;z-index:1}
+.step-badge-done{background:var(--grn)}
+.step-body{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);padding:14px 18px;flex:1;font-size:14px}
+.step-title{font-weight:700;font-size:14px;color:var(--n9);margin-bottom:5px;display:flex;align-items:center;gap:8px}
+.step-text{color:var(--n7);line-height:1.6;margin:0}
+
+/* TABLE */
+.tw{overflow-x:auto;margin-bottom:28px}
+.tbl{width:100%;border-collapse:collapse;font-size:14px;background:var(--w);border:1px solid var(--n2);border-radius:var(--r);overflow:hidden}
+.tbl th{background:var(--p);color:#fff;text-align:left;padding:12px 16px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase}
+.tbl td{padding:12px 16px;border-bottom:1px solid var(--n2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:var(--pl)}
+.tbl-amt{text-align:right;font-weight:700;color:var(--p);white-space:nowrap;font-size:15px}
+.tbl-sub td{background:#eef4fb!important;font-weight:700}
+.tbl-sub .tbl-amt{color:var(--pd);font-size:16px}
+
+/* TWO COL */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+
+
+
+/* PROS/CONS */
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:28px}
+.pc-card{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);padding:16px 20px}
+.pc-card h4{font-size:14px;font-weight:700;margin:0 0 10px}
+.pc-card ul{padding-left:18px;font-size:13px;color:var(--n7);line-height:1.8;margin:0}
+.pc-pro{border-top:3px solid var(--grn)}.pc-pro h4{color:var(--grn)}
+.pc-con{border-top:3px solid var(--org)}.pc-con h4{color:var(--org)}
+
+/* CALLOUT */
+.callout{background:var(--p);color:#fff;border-radius:var(--r);padding:24px 28px;margin-bottom:28px}
+.callout-title{font-size:17px;font-weight:700;margin:0 0 10px;color:#cde2ff}
+.callout-text{font-size:14px;line-height:1.7;color:rgba(255,255,255,.88);margin:0;max-width:680px}
+
+/* APPLICANT */
+.appg{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:24px}
+.appc{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);padding:16px;text-align:center}
+.appc-name{font-size:13px;font-weight:700;margin-bottom:4px;color:var(--n9)}
+.appc-desc{font-size:12px;color:var(--n5);line-height:1.4}
+
+/* ÚČINNOST */
+.utl{display:flex;flex-direction:column;gap:0;margin-bottom:28px;position:relative}
+.utl::before{content:'';position:absolute;left:39px;top:20px;bottom:20px;width:3px;background:var(--n2);z-index:0}
+.u-item{display:flex;gap:16px;position:relative;z-index:1}
+.u-item+.u-item{margin-top:12px}
+.u-badge{width:80px;height:80px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:11px;text-align:center;line-height:1.2;padding:8px}
+.u-body{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);padding:16px 20px;flex:1;align-self:center}
+.u-body h4{margin:0 0 6px;font-size:15px;font-weight:700;color:var(--n9)}
+.u-body p{margin:0;font-size:13px;color:var(--n7);line-height:1.6}
+.u-body ul{margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--n7);line-height:1.7}
+
+/* SANKCE */
+.sk-block{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);margin-bottom:16px;overflow:hidden}
+.sk-hdr{padding:10px 16px;font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.sk-body{padding:12px 16px;font-size:13px;color:var(--n7)}
+.sk-row{display:flex;justify-content:space-between;align-items:baseline;padding:5px 0;border-bottom:1px solid #f0f0f0;gap:12px}
+.sk-row:last-child{border-bottom:none}
+.sk-desc{flex:1;line-height:1.5}
+.sk-amt{font-weight:700;white-space:nowrap;color:var(--red);font-size:14px}
+
+/* PŘEKÁŽKY */
+.pkg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;margin-bottom:28px}
+.pkc{background:var(--w);border:1px solid #f5c6c6;border-left:4px solid var(--red);border-radius:var(--r);padding:14px 16px;font-size:13px;color:var(--n7);line-height:1.6}
+.pkc strong{display:block;font-size:13px;font-weight:700;color:var(--red);margin-bottom:4px}
+
+/* INNER TABS */
+.itabs{display:flex;gap:4px;margin-bottom:24px;overflow-x:auto;scrollbar-width:none;background:var(--n1);border:1px solid var(--n2);border-radius:var(--r);padding:4px}
+.itabs::-webkit-scrollbar{display:none}
+.itab{background:none;border:none;font-family:'Roboto',sans-serif;font-size:13px;font-weight:500;color:var(--n5);padding:8px 16px;cursor:pointer;white-space:nowrap;border-radius:var(--r);transition:all .15s}
+.itab:hover{color:var(--p);background:var(--w)}
+.itab.active{color:var(--pd);background:var(--w);font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.ipanel{display:none}.ipanel.active{display:block}
+
+/* EGOV CARDS */
+.egrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px;margin-bottom:28px}
+.ecard{background:var(--w);border:1px solid var(--n2);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column}
+.ecard-top{height:5px;flex-shrink:0}
+.ecard-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:10px}
+.ecard-head{display:flex;align-items:flex-start;gap:12px}
+.ecard-ico{font-size:28px;line-height:1;flex-shrink:0;margin-top:2px}
+.ecard-meta{flex:1}
+.ecard-name{font-size:15px;font-weight:700;color:var(--n9);margin:0 0 4px;line-height:1.3}
+.ecard-type{display:inline-block;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 8px;border-radius:2px}
+.ecard-para{display:inline-block;font-size:11px;font-weight:600;padding:2px 8px;border-radius:2px;background:#e8f0f9;color:#1a4a7f;margin-left:6px}
+.ecard-desc{font-size:13px;color:var(--n7);line-height:1.65;margin:0}
+.ecard-div{border:none;border-top:1px solid var(--n2);margin:0}
+.ecard-rels{display:flex;flex-direction:column;gap:3px}
+.ecard-rl{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--n5);margin-bottom:4px}
+.ecard-rel{display:flex;align-items:baseline;gap:6px;font-size:12px;color:var(--n7);line-height:1.5}
+.ecard-arr{font-weight:700;flex-shrink:0;color:var(--p);width:14px}
+
+/* AKTÉŘI */
+.ak-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:28px}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  /* Header */
+  .hdr-meta{gap:12px}
+  .hdr-mi{padding:0;margin:0;border-right:none;border-bottom:1px solid var(--n2);padding-bottom:10px;width:100%}
+  .hdr-mi:last-child{border-bottom:none;padding-bottom:0}
+
+  /* Nav — větší touch target */
+  .nav-tab{padding:12px 14px;font-size:13px}
+
+  /* Main padding */
+  main{padding:20px 0 48px}
+
+  /* Sekce */
+  .sh{font-size:20px}
+  .sl{font-size:14px;margin-bottom:20px}
+
+  /* Stats — 2 sloupce na mobilu */
+  .stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .stat{min-width:0}
+  .stat-num{font-size:18px}
+
+  /* Infobar — zmenšit padding */
+  .info{padding:12px 14px;font-size:13px}
+
+  /* Cards */
+  .cg{grid-template-columns:1fr;gap:12px}
+  .ak-grid{grid-template-columns:1fr;gap:12px}
+  .card{padding:16px}
+
+  /* Accordion */
+  .acc-btn{font-size:13px;padding:12px 14px}
+  .acc-panel{padding:12px 14px 14px;font-size:13px}
+
+  /* Stepper — zmenšit badge */
+  .stepper::before{left:15px}
+  .step-badge{width:32px;height:32px;font-size:13px}
+  .step-body{padding:10px 14px;font-size:13px}
+  .step-title{font-size:13px;flex-wrap:wrap}
+
+  /* Table — horizontální scroll + zmenšení */
+  .tbl th,.tbl td{padding:8px 10px;font-size:12px}
+  .tbl-amt{font-size:13px}
+
+  /* Callout */
+  .callout{padding:16px 18px}
+  .callout-title{font-size:15px}
+  .callout-text{font-size:13px}
+
+  /* Applicants */
+  .appg{grid-template-columns:1fr 1fr;gap:8px}
+  .appc{padding:12px}
+
+  /* Pros/cons */
+  .pc{grid-template-columns:1fr}
+
+  /* eGov karty */
+  .egrid{grid-template-columns:1fr;gap:14px}
+  .ecard-body{padding:14px;gap:8px}
+  .ecard-name{font-size:14px}
+
+  /* Překážky */
+  .pkg{grid-template-columns:1fr}
+
+  /* Sanctions */
+  .sk-row{flex-direction:column;gap:2px}
+  .sk-amt{font-size:13px}
+
+  /* Two col */
+  .two{grid-template-columns:1fr}
+
+  /* Účinnost */
+  .utl::before{left:31px}
+  .u-badge{width:64px;height:64px;font-size:10px}
+  .u-body{padding:12px 14px}
+  .u-body h4{font-size:14px}
+
+  /* Inner tabs */
+  .itab{font-size:12px;padding:7px 12px}
+
+  /* Výjimky grid v infobar */
+  .info-d [style*="grid"]{grid-template-columns:1fr!important}
+}
+
+@media(max-width:480px){
+  /* Stat tiles — 1 sloupec */
+  .stats{grid-template-columns:1fr 1fr}
+
+  /* Header title */
+  .hdr-title{font-size:20px}
+  .hdr-sub{font-size:13px}
+
+  /* Appg — 1 sloupec */
+  .appg{grid-template-columns:1fr}
+
+  /* ecard-type badge — zalamovat */
+  .ecard-para{margin-left:0;margin-top:4px;display:block}
+}
+
+/* FOOTER */
+.ftr{background:var(--n9);color:#ccc;padding:32px 0 24px;margin-top:48px}
+.ftr-in{max-width:1200px;margin:0 auto;padding:0 16px}
+.ftr-logo{color:#fff;font-weight:700;font-size:16px;margin-bottom:8px}
+.ftr-txt{font-size:12px;color:#888;line-height:1.6;margin-bottom:16px}
+.ftr-div{border-color:rgba(255,255,255,.1);margin:16px 0}
+.ftr-leg{font-size:12px;color:#666;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px}
+</style>
+</head>
+<body>
+<a href="#main" class="skip">Přeskočit na hlavní obsah</a>
+
+<header class="hdr">
+  <div class="hdr-bar"><div class="hdr-bar-in">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+    <div class="hdr-bar-txt"><strong>gov.cz</strong></div>
+  </div></div>
+  <div class="hdr-body"><div class="hdr-body-in">
+    <div class="hdr-eye">
+      <span class="tag tag-p">Sněmovní tisk 54/0</span>
+      <span class="tag tag-n">10. volební období</span>
+      <span class="tag tag-s">Přijato PSP 3. 3. 2026</span>
+      <span class="tag tag-w">📨 Postoupeno Senátu</span>
+    </div>
+    <h1 class="hdr-title">Zákon o správě dat a o řízeném přístupu k datům</h1>
+    <p class="hdr-sub">Zákon přijatý Poslaneckou sněmovnou ČR · Navazuje na evropský Data Governance Act (DGA, nařízení EU 2022/868) · Předkladatel: Ministerstvo práce a sociálních věcí</p>
+    <div class="info info-w" style="margin-top:16px;margin-bottom:0">
+      ⚠️ <strong>Upozornění:</strong> Tato vizualizace vychází z textu přijatého Poslaneckou sněmovnou ČR (3. 3. 2026). Zákon je aktuálně v&nbsp;legislativním procesu — postoupen Senátu ČR. <strong>Nemusí se jednat o finální znění.</strong> Senát může zákon schválit, vrátit s pozměňovacími návrhy nebo zamítnout.
+    </div>
+    <div class="hdr-meta">
+      <div class="hdr-mi"><div class="hdr-ml">Doručeno sněmovně</div><div class="hdr-mv">8. 12. 2025</div></div>
+      <div class="hdr-mi"><div class="hdr-ml">Přijato</div><div class="hdr-mv">3. 3. 2026</div></div>
+      <div class="hdr-mi"><div class="hdr-ml">Rozsah dokumentu</div><div class="hdr-mv">194 stran</div></div>
+      <div class="hdr-mi"><div class="hdr-ml">Části zákona</div><div class="hdr-mv">6 částí</div></div>
+      <div class="hdr-mi"><div class="hdr-ml">Sněmovní tisk</div><div class="hdr-mv"><a href="https://www.psp.cz/sqw/historie.sqw?o=10&t=54" target="_blank" style="color:#2362a2;text-decoration:none">📄 PSP ČR — tisk 54/0</a></div></div>
+    </div>
+  </div></div>
+</header>
+
+<nav class="nav"><div class="nav-in">
+  <button class="nav-tab active" onclick="showSec('prehled',this)">Přehled</button>
+  <button class="nav-tab" onclick="showSec('sprava',this)">Správa dat</button>
+  <button class="nav-tab" onclick="showSec('pristup',this)">Řízený přístup k datům</button>
+  <button class="nav-tab" onclick="showSec('ucinnost',this)">Účinnost</button>
+  <button class="nav-tab" onclick="showSec('naklady',this)">Náklady & dopady</button>
+  <button class="nav-tab" onclick="showSec('sankce',this)">Sankce</button>
+  <button class="nav-tab" onclick="showSec('aktori',this)">Aktéři</button>
+  <button class="nav-tab" onclick="showSec('architektura',this)">Architektura eGov</button>
+</div></nav>
+
+<main id="main"><div class="wrap">
+
+<!-- PŘEHLED -->
+<div class="sec active" id="prehled">
+  <div class="bc"><a href="#">gov.cz</a> › <a href="#">Legislativa</a> › Zákon o správě dat</div>
+  <h2 class="sh">Přehled zákona</h2>
+  <p class="sl">Česká veřejná správa shromažďuje data, která jsou špatně popsaná, nedostupná a nevyužitá. Zákon to mění ve dvou hlavních oblastech: správa dat a řízený přístup k datům.</p>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">2</div><div class="stat-lbl">hlavní oblasti (správa + řízený přístup)</div></div>
+    <div class="stat"><div class="stat-num">293 M Kč</div><div class="stat-lbl">jednorázové náklady na zavedení správy dat</div></div>
+    <div class="stat"><div class="stat-num">53 M Kč</div><div class="stat-lbl">infrastruktura řízeného přístupu</div></div>
+    <div class="stat"><div class="stat-num">3 000 Kč</div><div class="stat-lbl">správní poplatek za přijetí žádosti</div></div>
+    <div class="stat"><div class="stat-num">1. 1. 2029</div><div class="stat-lbl">plná účinnost povinností správy dat (§ 6–8)</div></div>
+    <div class="stat"><div class="stat-num">🏛 DIA</div><div class="stat-lbl">koordinátor · vydává normy · spravuje NKD · rozhoduje o žádostech</div></div>
+  </div>
+
+  <div class="info">
+    <span style="font-size:18px;margin-right:8px;vertical-align:middle">ℹ️</span>
+    <strong>Proč zákon vznikl:</strong> Správci ISVS mnohdy přesně nevědí, jaká data spravují. Data nejsou popsána metadaty a přístup k nim mají de facto dodavatelé IT systémů — nikoli úřady samotné. Zákon zavádí povinnost data popsat a umožnit jejich řízenou výměnu s výzkumníky, kontrolory a pedagogy.
+  </div>
+
+  <div class="info info-d">
+    <div style="display:flex;align-items:flex-start;gap:12px">
+      <span style="font-size:22px;flex-shrink:0">⛔</span>
+      <div>
+        <strong style="display:block;font-size:15px;color:#c52a2a;margin-bottom:8px">Na koho se zákon NEVZTAHUJE (§ 2)</strong>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:6px 24px;font-size:14px;color:#444">
+          <div>✕ <strong>Obce, kraje</strong> a dobrovolné svazky obcí <em style="font-size:11px;color:#999">(§ 2/3/i)</em></div>
+          <div>✕ <strong>Bezpečnostní sbory</strong> a ozbrojené síly <em style="font-size:11px;color:#999">(§ 2/3/j)</em></div>
+          <div>✕ <strong>Elektronické systémy spisových služeb</strong> atestované dle zákona o archivnictví <em style="font-size:11px;color:#999">(§ 2/4)</em></div>
+          <div>✕ ISVS obsahující <strong>utajované informace</strong> <em style="font-size:11px;color:#999">(§ 2/2)</em></div>
+          <div>✕ Data pro potřeby <strong>obrany a bezpečnosti státu</strong> <em style="font-size:11px;color:#999">(§ 2/3/a,b)</em></div>
+          <div>✕ Data pro potřeby <strong>trestního řízení</strong> (výjimka: evidenční a statistická) <em style="font-size:11px;color:#999">(§ 2/3/d)</em></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cg">
+    <div class="card"><div class="card-ico" style="background:#e8f0f9">📚</div><h3 class="card-title">Datový slovník</h3><p class="card-text">Každý správce dat musí popsat svá data metadaty v datovém slovníku, který se stane součástí Národního katalogu dat.</p></div>
+    <div class="card"><div class="card-ico" style="background:#e8f5e9">🌐</div><h3 class="card-title">Národní katalog dat</h3><p class="card-text">Nový ISVS, který integruje lokální katalogy všech úřadů a zpřístupní přehled o existujících datech veřejné správy.</p></div>
+    <div class="card"><div class="card-ico" style="background:#fce4ec">🔐</div><h3 class="card-title">Řízený přístup</h3><p class="card-text">Možnost požádat o přístup k chráněným datům pro vědecký výzkum, kontrolu veřejné správy nebo výuku a vzdělávání.</p></div>
+    <div class="card"><div class="card-ico" style="background:#fff8e1">🗺</div><h3 class="card-title">Geoportál ČR</h3><p class="card-text">Zákon zřizuje Geoportál České republiky pro sdílení prostorových dat. Správce: MŽP. Náklady: 87 mil. Kč.</p></div>
+    <div class="card"><div class="card-ico" style="background:#e8f0f9">🏛</div><h3 class="card-title">DIA jako koordinátor</h3><p class="card-text">Digitální a informační agentura vydává otevřené formální normy, spravuje katalog a rozhoduje o vícesprávcovských žádostech.</p></div>
+    <div class="card"><div class="card-ico" style="background:#e8f0f9">⚖️</div><h3 class="card-title">Harmonizace s EU</h3><p class="card-text">Zákon implementuje kapitolu II nařízení DGA (EU 2022/868) a vytváří důvěryhodné prostředí pro datové zprostředkovatele.</p></div>
+  </div>
+</div>
+
+<!-- SPRÁVA DAT -->
+<div class="sec" id="sprava">
+  <h2 class="sh">Část I: Správa dat</h2>
+  <p class="sl">Co musí správci dat (státní úřady a instituce) udělat. Povinnosti nabývají účinnosti 1. ledna 2029.</p>
+  <div class="info info-w"><span style="font-size:18px;margin-right:8px;vertical-align:middle">📅</span><strong>Pozor na účinnost:</strong> Povinnosti popisu dat metadaty (§ 6–8) a přestupky správců dat (§ 32) nabývají účinnosti až <strong>1. ledna 2029</strong>.</div>
+  <div class="acc">
+    <div class="acc-item open">
+      <button class="acc-btn" onclick="toggleAcc(this)"><span>§ 4–5 · Kdo jsou správci dat a jejich základní povinnosti</span><span class="acc-arr">▾</span></button>
+      <div class="acc-panel"><p>Správcem dat je <strong>správce ISVS</strong> podle zákona o informačních systémech veřejné správy. Základní povinnosti:</p><ul><li>Chrání <strong>důvěryhodnost, užitečnost a význam</strong> dat</li><li>Má k datům <strong>nepřetržitý a úplný přístup</strong> — i při outsourcingu IT</li><li>Stanoví si <strong>vnitřní pravidla</strong> pro správu dat a datových rozhraní</li></ul></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="toggleAcc(this)"><span>§ 6–7 · Popis dat metadaty a datová rozhraní <span class="tag tag-w" style="font-size:11px">účinnost 1. 1. 2029</span></span><span class="acc-arr">▾</span></button>
+      <div class="acc-panel"><p>Správce dat musí popsat veškerá data v ISVS pomocí metadat dle otevřené formální normy DIA. Zahrnuje:</p><ul><li><strong>Strukturu a význam</strong> dat (typy osob, věcí, vlastnosti a vztahy)</li><li><strong>Datová rozhraní</strong> (technická opatření pro zpřístupnění a sdílení)</li><li>Aktualizaci nejpozději do <strong>7 pracovních dnů</strong> od zjištění změny</li></ul></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="toggleAcc(this)"><span>§ 8–9 · Datový slovník a Národní katalog dat <span class="tag tag-w" style="font-size:11px">účinnost 1. 1. 2029</span></span><span class="acc-arr">▾</span></button>
+      <div class="acc-panel"><span class="tag tag-s" style="margin-bottom:10px;display:inline-block">Nový IS veřejné správy</span><p><strong>Datový slovník agendy</strong> vytváří ohlašovatel agendy (§ 8/1). <strong>Datový slovník správce dat</strong> vytváří ústřední správní úřady (§ 8/2).</p><p><strong>Národní katalog dat</strong> (správce: DIA) integruje lokální katalogy, datové slovníky a zprostředkovává podávání žádostí o řízený přístup.</p></div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" onclick="toggleAcc(this)"><span>§ 10 · Geoportál České republiky</span><span class="acc-arr">▾</span></button>
+      <div class="acc-panel"><span class="tag tag-p" style="margin-bottom:10px;display:inline-block">Nová infrastruktura</span><p>Zákon zřizuje <strong>Geoportál ČR</strong> jako ISVS pro prostorová data. Správce: <strong>MŽP</strong>.</p><ul><li>Jednorázové náklady: <strong>87 000 000 Kč</strong></li><li>Roční provozní náklady: <strong>17 000 000 Kč</strong></li><li>Veřejně přístupný dálkovým přístupem</li></ul></div>
+    </div>
+  </div>
+</div>
+
+<!-- ŘÍZENÝ PŘÍSTUP -->
+<div class="sec" id="pristup">
+  <h2 class="sh">Řízený přístup k datům (§ 11–27)</h2>
+  <p class="sl">Podmínky, překážky a postup žádosti o přístup k chráněným datům. Celá tato oblast nabývá účinnosti 1. ledna 2028.</p>
+  <div class="info info-w"><span style="font-size:18px;margin-right:8px;vertical-align:middle">📅</span><strong>Účinnost:</strong> Celá Hlava III (§ 11–27) nabývá účinnosti <strong>1. ledna 2028</strong>.</div>
+
+  <div class="itabs">
+    <button class="itab active" onclick="showInner('ip-podminky',this)">Podmínky a účely</button>
+    <button class="itab" onclick="showInner('ip-prekazky',this)">Překážky § 14</button>
+    <button class="itab" onclick="showInner('ip-proces',this)">Jak žádat</button>
+  </div>
+
+  <div class="ipanel active" id="ip-podminky">
+    <div class="info"><span style="font-size:18px;margin-right:8px;vertical-align:middle">🔒</span><strong>Na jaká data:</strong> Řízený přístup lze povolit k datům dle čl. 3 DGA — chráněným jako osobní údaje (GDPR), obchodní tajemství, autorská práva třetích osob nebo statistická důvěrnost. Data jsou vždy v <strong>anonymizované podobě</strong>. Výjimka: u vědeckého výzkumu lze poskytnout data umožňující <em>nepřímou</em> identifikaci.</div>
+    <div class="two">
+      <div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 12px">Za jakými účely? (§ 13 odst. 1)</h3>
+        <div class="info info-d" style="margin-bottom:12px;font-size:13px">⚠️ Zákon vymezuje <strong>pouze 3 přípustné účely</strong>.</div>
+        <div class="appg" style="grid-template-columns:1fr">
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:28px">🔬</div><div><div class="appc-name">a) Vědecký výzkum</div><div class="appc-desc">Dokládá se odborná způsobilost, instituce a popis výzkumu.</div></div></div>
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:28px">🏛</div><div><div class="appc-name">b) Kontrola veřejné správy</div><div class="appc-desc">Hodnocení, kontrola nebo analýza výkonu veřejné správy.</div></div></div>
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:28px">📚</div><div><div class="appc-name">c) Výuka a vzdělávání</div><div class="appc-desc">Využití dat pro vzdělávací účely.</div></div></div>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:15px;font-weight:700;margin:0 0 12px">Kdo rozhoduje? (§ 12)</h3>
+        <div class="appg" style="grid-template-columns:1fr">
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:24px">🗂</div><div><div class="appc-name">Správce dat</div><div class="appc-desc">Pokud žádost míří pouze na data jednoho správce.</div></div></div>
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:24px">🏛</div><div><div class="appc-name">DIA (Agentura)</div><div class="appc-desc">Pokud žádost míří na data více správců.</div></div></div>
+          <div class="appc" style="text-align:left;display:flex;align-items:center;gap:12px"><div style="font-size:24px">🏥</div><div><div class="appc-name">Příslušný subjekt</div><div class="appc-desc">MPSV, ČSÚ, GFŘ nebo ÚZIS — pro svá specifická data dle § 29.</div></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="callout"><div class="callout-title">Záruky a podmínky přístupu (§ 26)</div><p class="callout-text">Přístup probíhá v zabezpečeném prostředí. Žadatel nesmí provést reidentifikaci, neoprávněné propojení dat ani použít data k jinému účelu. Musí přijmout technická a provozní opatření, předložit prohlášení o důvěrnosti všech osob s přístupem a oznámit jakékoli porušení ochrany dat DIA i správci.</p></div>
+  </div>
+
+  <div class="ipanel" id="ip-prekazky">
+    <div class="info"><span style="font-size:18px;margin-right:8px;vertical-align:middle">⚖️</span><strong>Jak se posuzují:</strong> Podmínkou pro zamítnutí je <em>nepřiměřený zásah</em> do chráněných práv — nejde o automatický zákaz.</div>
+    <h3 style="font-size:15px;font-weight:700;margin:0 0 12px">§ 14 odst. 1 — Obecné překážky</h3>
+    <div class="pkg">
+      <div class="pkc"><strong>Obrana státu</strong>Zásah do práv nebo zájmů týkajících se obrany státu.</div>
+      <div class="pkc"><strong>Bezpečnost státu a veřejný pořádek</strong>Bezpečnost státu, vnitřní bezpečnost nebo veřejný pořádek.</div>
+      <div class="pkc"><strong>Krizové řízení</strong>Krizové řízení nebo ochrana obyvatelstva.</div>
+      <div class="pkc"><strong>Zájmy ČR v zahraničí</strong>Ochrana zájmů České republiky nebo jejích občanů v zahraničí.</div>
+      <div class="pkc"><strong>Bankovní tajemství / daňová mlčenlivost</strong>Bankovní tajemství nebo mlčenlivost podle daňového řádu.</div>
+      <div class="pkc"><strong>Probíhající řízení</strong>Probíhající kontrola nebo soudní, rozhodčí či správní řízení — pokud by poskytnutí ohrozilo jeho účel.</div>
+      <div class="pkc"><strong>Zpravodajské služby</strong>Plnění úkolů zpravodajských služeb České republiky.</div>
+    </div>
+    <h3 style="font-size:15px;font-weight:700;margin:16px 0 12px">§ 14 odst. 2 — Absolutní zákazy</h3>
+    <div class="info info-d"><span style="font-size:18px;margin-right:8px;vertical-align:middle">🚫</span><strong>Tato data jsou vždy vyloučena bez možnosti výjimky:</strong></div>
+    <div class="pkg">
+      <div class="pkc"><strong>Biometrické údaje</strong>Žádné výjimky.</div>
+      <div class="pkc"><strong>Lokalizační data pohybu osob</strong>Data umožňující lokalizaci pohybu konkrétní osoby nebo dopravního prostředku.</div>
+      <div class="pkc"><strong>Data o mezinárodní ochraně</strong>Data z řízení o udělení mezinárodní ochrany a o oprávnění k pobytu.</div>
+      <div class="pkc"><strong>Data o probíhajícím trestním řízení</strong>Pokud by poskytnutí ohrozilo právo na spravedlivý proces.</div>
+      <div class="pkc"><strong>Data o předcházení trestné činnosti</strong>Data orgánů činných v trestním řízení týkající se prevence a stíhání trestné činnosti.</div>
+    </div>
+  </div>
+
+  <div class="ipanel" id="ip-proces">
+    <div class="info info-w"><span style="font-size:18px;margin-right:8px;vertical-align:middle">💰</span><strong>Správní poplatek:</strong> Za přijetí žádosti se platí <strong>3 000 Kč</strong>. Nad rámec poplatku žadatel uhradí i skutečné náklady anonymizace (§ 23).</div>
+    <div class="stepper">
+      <div class="step"><div class="step-badge">0</div><div class="step-body"><div class="step-title">Předběžná informace <span class="tag tag-n">Nepovinný krok</span></div><p class="step-text">Žadatel může požádat o předběžnou informaci přes NKD. DIA nebo příslušný správce odpoví do <strong>30 dnů</strong> (§ 15).</p></div></div>
+      <div class="step"><div class="step-badge">1</div><div class="step-body"><div class="step-title">Podání žádosti <span class="tag tag-p">§ 16</span></div><p class="step-text">Žádost se podává přes <strong>Národní katalog dat</strong>. Součástí je projekt využití dat — vymezení dat, účel, forma, doba, zabezpečení a seznam osob s přístupem. U výzkumu se dokládá odborná způsobilost.</p></div></div>
+      <div class="step"><div class="step-badge">2</div><div class="step-body"><div class="step-title">Posouzení a závazná stanoviska <span class="tag tag-p">§ 17–19</span></div><p class="step-text">Povolující orgán vyžádá od dotčených správců dat <strong>závazná stanoviska</strong>. Může nařídit společné nebo ústní jednání.</p></div></div>
+      <div class="step"><div class="step-badge">3</div><div class="step-body"><div class="step-title">Úhrada nákladů <span class="tag tag-w">§ 23</span></div><p class="step-text">Správce dat oznámí výši nákladů. Žadatel uhradí do <strong>30 dnů</strong> od výzvy — jinak je žádost zamítnuta.</p></div></div>
+      <div class="step"><div class="step-badge step-badge-done">✓</div><div class="step-body"><div class="step-title">Rozhodnutí a přístup <span class="tag tag-s">§ 22, 24</span></div><p class="step-text">Povolující orgán vydá rozhodnutí. Správce dat zajistí přístup k anonymizovaným datům v zabezpečeném prostředí.</p></div></div>
+      <div class="step"><div class="step-badge" style="background:#767676">↩</div><div class="step-body"><div class="step-title">Přezkum a odvolání <span class="tag tag-n">§ 25</span></div><p class="step-text">Rozhodnutí je přezkoumatelné. Odvolání vyřizuje DIA. Povolení lze zrušit při opakovaném porušení povinností nebo ohrožení bezpečnosti dat.</p></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ÚČINNOST -->
+<div class="sec" id="ucinnost">
+  <h2 class="sh">Časová osa účinnosti (§ 41)</h2>
+  <p class="sl">Zákon nabývá účinnosti ve třech vlnách.</p>
+  <div class="info"><span style="font-size:18px;margin-right:8px;vertical-align:middle">📋</span><strong>Přechodné ustanovení (§ 36):</strong> DIA je povinna do <strong>3 měsíců</strong> od nabytí obecné účinnosti zveřejnit otevřenou formální normu pro strukturu lokálního katalogu dat a datových slovníků.</div>
+  <div class="utl">
+    <div class="u-item">
+      <div class="u-badge" style="background:#2362a2;color:#fff"><div style="font-size:16px;font-weight:700">+15</div><div>dní po<br>vyhlášení</div></div>
+      <div class="u-body"><h4>Obecná účinnost — základní a organizační ustanovení</h4><ul><li>§ 1–5 — obecná ustanovení, správce dat, základní povinnosti</li><li>§ 10 — zřízení Geoportálu ČR</li><li>§ 28 (kromě d/e/i) — pravomoci DIA</li><li>§ 29–30 — příslušné subjekty (MPSV, ČSÚ, GFŘ, ÚZIS)</li><li>§ 31 odst. 1 — kontrola správců dat</li><li>§ 36 — DIA zveřejní normy do 3 měsíců</li><li>§ 37 — změna zákona o rejstříku trestů</li></ul></div>
+    </div>
+    <div class="u-item">
+      <div class="u-badge" style="background:#1a4a7f;color:#fff"><div style="font-size:13px;font-weight:700">1. 1.</div><div style="font-size:18px;font-weight:700;line-height:1">2028</div></div>
+      <div class="u-body"><h4>Řízený přístup k datům — lze podávat žádosti</h4><ul><li>§ 9 odst. 1 písm. c) — NKD jako místo pro podávání žádostí</li><li>§ 11–27 — celá Hlava III (řízený přístup)</li><li>§ 28 písm. d), e), i) — DIA rozhoduje o žádostech a odvoláních</li><li>§ 31 odst. 2 — kontrola osob s povoleným přístupem</li><li>§ 33 — přestupky osob (žadatelů)</li><li>§ 35 — zmocnění DIA k vydání vyhlášky</li><li>§ 38–40 — novelizace zákona o zdravotních službách</li></ul></div>
+    </div>
+    <div class="u-item">
+      <div class="u-badge" style="background:#2e7d32;color:#fff"><div style="font-size:13px;font-weight:700">1. 1.</div><div style="font-size:18px;font-weight:700;line-height:1">2029</div></div>
+      <div class="u-body"><h4>Povinnosti správy dat — plná účinnost pro správce ISVS</h4><ul><li>§ 6 — popis dat a datových rozhraní metadaty</li><li>§ 7 — lokální katalog dat, aktualizace do 7 pracovních dnů</li><li>§ 8 — datový slovník agendy a správce dat</li><li>§ 32 odst. 1 písm. a) a b) — přestupky správců dat</li></ul><div style="margin-top:10px;padding:8px 12px;background:#e8f5e9;border-radius:4px;font-size:13px;color:#1b5e20">✅ Správci dat mají na přípravu téměř 3 roky od přijetí zákona.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- NÁKLADY -->
+<div class="sec" id="naklady">
+  <h2 class="sh">Náklady & dopady</h2>
+  <p class="sl">Zákon přináší přímé náklady pro státní rozpočet, ale i nepřímé přínosy.</p>
+  <div class="tw"><table class="tbl"><thead><tr><th>Položka</th><th>Typ</th><th style="text-align:right">Výše (Kč)</th></tr></thead><tbody>
+    <tr><td><strong>Zavedení správy dat v ISVS</strong><br><span style="font-size:12px;color:#767676">Jednorázové, vč. úpravy systémů</span></td><td><span class="tag tag-w">Jednorázový</span></td><td class="tbl-amt">292 860 000</td></tr>
+    <tr><td><strong>Roční personální a provozní náklady správy dat</strong></td><td><span class="tag tag-n">Roční</span></td><td class="tbl-amt">242 120 000</td></tr>
+    <tr><td><strong>Geoportál ČR — zřízení</strong></td><td><span class="tag tag-w">Jednorázový</span></td><td class="tbl-amt">87 000 000</td></tr>
+    <tr><td><strong>Geoportál ČR — roční provoz</strong></td><td><span class="tag tag-n">Roční</span></td><td class="tbl-amt">17 000 000</td></tr>
+    <tr><td><strong>Infrastruktura řízeného přístupu</strong></td><td><span class="tag tag-w">Jednorázový</span></td><td class="tbl-amt">53 060 000</td></tr>
+    <tr><td><strong>Roční provoz agendy řízeného přístupu</strong></td><td><span class="tag tag-n">Roční</span></td><td class="tbl-amt">30 870 000</td></tr>
+    <tr class="tbl-sub"><td><strong>Celkové jednorázové náklady</strong></td><td></td><td class="tbl-amt">432 920 000</td></tr>
+    <tr class="tbl-sub"><td><strong>Celkové roční náklady</strong></td><td></td><td class="tbl-amt">289 990 000</td></tr>
+  </tbody></table></div>
+  <div class="pc">
+    <div class="pc-card pc-pro"><h4>✅ Pozitivní dopady</h4><ul><li>Vyšší efektivita veřejné správy</li><li>Impulz pro vědecký výzkum</li><li>Lepší podklady pro kontrolu veřejné správy</li><li>Žádné přímé náklady pro podnikatelské prostředí</li><li>Harmonizace s EU (DGA)</li></ul></div>
+    <div class="pc-card pc-con"><h4>⚠️ Rizika a výzvy</h4><ul><li>Ochota správců dat aktivně spolupracovat</li><li>Kapacitní a technické možnosti úřadů</li><li>Kvalita anonymizace citlivých dat</li><li>Náklady na datové experty v institucích</li><li>Koordinace se stávajícími systémy</li></ul></div>
+  </div>
+</div>
+
+<!-- SANKCE -->
+<div class="sec" id="sankce">
+  <h2 class="sh">Sankce a přestupky (§ 32–34)</h2>
+  <p class="sl">Zákon rozlišuje přestupky správců dat a přestupky osob s povoleným přístupem. Přestupky projednává a pokuty vybírá DIA.</p>
+  <div class="info"><span style="font-size:18px;margin-right:8px;vertical-align:middle">⚖️</span><strong>Příslušnost:</strong> Veškeré přestupky dle tohoto zákona projednává <strong>DIA</strong>, která pokuty také vybírá a vymáhá (§ 34).</div>
+  <h3 style="font-size:16px;font-weight:700;margin:0 0 14px">§ 32 — Přestupky správců dat <span class="tag tag-w" style="vertical-align:middle">§ 32/a,b od 1. 1. 2029 · § 32/c od vyhlášení</span></h3>
+  <div class="sk-block"><div class="sk-hdr" style="background:#fff3e0;color:#e65100">⚠️ Správce dat — přestupky a sazby pokut</div><div class="sk-body">
+    <div class="sk-row"><div class="sk-desc"><strong>§ 32/1/a</strong> — Neudržování lokálního katalogu dat v aktuálním stavu</div><div class="sk-amt">až 200 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 32/1/b</strong> — Nevytvoření datového slovníku</div><div class="sk-amt">až 500 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 32/1/c</strong> — Nesplnění opatření k nápravě uloženého DIA</div><div class="sk-amt">až 100 000 Kč</div></div>
+  </div></div>
+  <h3 style="font-size:16px;font-weight:700;margin:20px 0 14px">§ 33 — Přestupky osob s povoleným přístupem <span class="tag tag-p" style="vertical-align:middle">účinnost od 1. 1. 2028</span></h3>
+  <div class="sk-block"><div class="sk-hdr" style="background:#fce4ec;color:#880e4f">🚫 Přestupky s pokutou až 10 000 000 Kč</div><div class="sk-body">
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/a</strong> — Opětovná identifikace dotčeného subjektu údajů</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/b</strong> — Neoprávněné propojení dat</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/c</strong> — Použití dat k jinému účelu než povoleném</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/d</strong> — Porušení technického zabezpečení řízeného přístupu</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/e</strong> — Nepřijetí technických opatření proti reidentifikaci</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/f</strong> — Neseznámení osob s povinnostmi / nepředložení prohlášení</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/i</strong> — Porušení povinnosti předávání neosobních údajů do třetích zemí</div><div class="sk-amt">až 10 000 000 Kč</div></div>
+  </div></div>
+  <div class="sk-block"><div class="sk-hdr" style="background:#fff8e1;color:#e65100">⚠️ Přestupky s pokutou až 5 000 000 Kč</div><div class="sk-body">
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/g</strong> — Nedodržení podmínek rozhodnutí o povolení přístupu</div><div class="sk-amt">až 5 000 000 Kč</div></div>
+    <div class="sk-row"><div class="sk-desc"><strong>§ 33/1/h</strong> — Neoznámení porušení ochrany dat DIA nebo správci dat</div><div class="sk-amt">až 5 000 000 Kč</div></div>
+  </div></div>
+</div>
+
+<!-- AKTÉŘI -->
+<div class="sec" id="aktori">
+  <h2 class="sh">Aktéři zákona — kompetenční model</h2>
+  <p class="sl">Kdo jsou hlavní subjekty, jaké mají pravomoci a jak spolu spolupracují.</p>
+  <div class="ak-grid">
+    <div class="card" style="border-top:4px solid #2362a2">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#e8f0f9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🏛</div><div><div class="card-title" style="margin:0">Digitální a informační agentura</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Ústřední koordinátor</div></div></div>
+      <ul style="font-size:13px;color:#444;padding-left:18px;margin:0;line-height:1.8"><li>Vydává <strong>otevřené formální normy</strong> pro metadata</li><li>Spravuje <strong>Národní katalog dat</strong></li><li>Je <strong>povolujícím správním orgánem</strong> pro vícesprávcovské žádosti</li><li>Poskytuje <strong>předběžné informace</strong> do 30 dnů</li><li><strong>Kontroluje</strong> správce dat, projednává přestupky</li><li>Vydá <strong>prováděcí vyhlášku</strong> k § 23</li></ul>
+      <div style="margin-top:10px"><span class="tag tag-p">§ 9, 15, 17, 28, 31, 34</span></div>
+    </div>
+    <div class="card" style="border-top:4px solid #5c9ad1">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#e8f0f9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🗂</div><div><div class="card-title" style="margin:0">Správce dat</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Správce ISVS — ústřední správní úřady</div></div></div>
+      <ul style="font-size:13px;color:#444;padding-left:18px;margin:0;line-height:1.8"><li>Popisuje data <strong>metadaty</strong>, vede lokální katalog</li><li>Zajišťuje <strong>nepřetržitý přístup</strong> k datům</li><li>Při jednosprávcovské žádosti je <strong>povolujícím orgánem</strong></li><li>Vydává <strong>závazné stanovisko</strong> pro DIA</li><li>Provádí <strong>anonymizaci dat</strong></li></ul>
+      <div style="margin-top:10px"><span class="tag tag-p">§ 4–8, 12, 18, 30</span></div>
+    </div>
+    <div class="card" style="border-top:4px solid #f57c00">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#fff8e1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🏥</div><div><div class="card-title" style="margin:0">Příslušné subjekty (§ 29)</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Speciální kompetence dle DGA čl. 7</div></div></div>
+      <div style="display:grid;gap:6px;font-size:13px">
+        <div style="background:#fff8e1;border-radius:3px;padding:7px 10px;border-left:3px solid #f57c00"><strong>MPSV</strong> — sociální zabezpečení, zaměstnanost, sociální politika</div>
+        <div style="background:#fff8e1;border-radius:3px;padding:7px 10px;border-left:3px solid #f57c00"><strong>ČSÚ</strong> — statistická data</div>
+        <div style="background:#fff8e1;border-radius:3px;padding:7px 10px;border-left:3px solid #f57c00"><strong>GFŘ</strong> — data o daních</div>
+        <div style="background:#fff8e1;border-radius:3px;padding:7px 10px;border-left:3px solid #f57c00"><strong>ÚZIS ČR</strong> — zdravotnická data přes NZIS</div>
+      </div>
+    </div>
+    <div class="card" style="border-top:4px solid #2e7d32">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#e8f5e9;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🔬</div><div><div class="card-title" style="margin:0">Žadatel</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Výzkumníci · Orgány kontroly · Pedagogové</div></div></div>
+      <ul style="font-size:13px;color:#444;padding-left:18px;margin:0;line-height:1.8"><li>Podává žádost s <strong>projektem využití dat</strong></li><li>Dokládá <strong>odbornou způsobilost</strong> (u výzkumu)</li><li>Hradí <strong>správní poplatek 3 000 Kč</strong> + skutečné náklady</li><li>Pracuje výhradně <strong>v zabezpečeném prostředí</strong></li><li>Nesmí provést <strong>reidentifikaci</strong> ani neoprávněné propojení</li></ul>
+      <div style="margin-top:10px"><span class="tag tag-s">§ 16, 26</span></div>
+    </div>
+    <div class="card" style="border-top:4px solid #c52a2a">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#fce4ec;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🔒</div><div><div class="card-title" style="margin:0">Úřad pro ochranu osobních údajů</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Dozorový orgán pro GDPR</div></div></div>
+      <ul style="font-size:13px;color:#444;padding-left:18px;margin:0;line-height:1.8"><li>Je <strong>neprodleně informován</strong>, pokud vyjde najevo neoprávněné nakládání s osobními údaji (§ 31/2)</li><li>Dozoruje soulad zpracování s GDPR</li></ul>
+      <div style="margin-top:10px"><span class="tag tag-n">§ 31 odst. 2</span></div>
+    </div>
+    <div class="card" style="border-top:4px solid #00796b">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><div style="width:42px;height:42px;background:#e0f2f1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px">🗺</div><div><div class="card-title" style="margin:0">Ministerstvo životního prostředí</div><div style="font-size:11px;color:#767676;text-transform:uppercase;letter-spacing:.05em">Správce Geoportálu ČR</div></div></div>
+      <ul style="font-size:13px;color:#444;padding-left:18px;margin:0;line-height:1.8"><li>Spravuje <strong>Geoportál České republiky</strong> — nový centrální ISVS pro prostorová data</li><li>Koordinuje publikaci prostorových dat ostatních správců</li><li>Přebírá funkce Národního geoportálu INSPIRE</li><li>Jednorázové náklady: <strong>87 mil. Kč</strong> · provoz: <strong>17 mil. Kč/rok</strong></li></ul>
+      <div style="margin-top:10px"><span class="tag tag-p">§ 10, § 13 odst. 4</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITEKTURA eGov -->
+<div class="sec" id="architektura">
+  <h2 class="sh">Architektura eGovernmentu</h2>
+  <p class="sl">Informační systémy a komponenty dotčené zákonem — co zákon nově zřizuje, kde ukládá nové povinnosti a na co navazuje.</p>
+  <div class="egrid" id="egrid"></div>
+</div>
+
+</div></main>
+
+<footer class="ftr"><div class="ftr-in">
+  <div class="ftr-logo">gov.cz · Legislativní vizualizace</div>
+  <div class="ftr-txt">Zákon o správě dat a o řízeném přístupu k datům · Sněmovní tisk 54/0<br>Poslanecká sněmovna ČR, 10. volební období · Doručeno 8. 12. 2025 · Přijato 3. 3. 2026<br><a href="https://www.psp.cz/sqw/historie.sqw?o=10&t=54" target="_blank" style="color:#94b8e8;text-decoration:none;font-size:12px;margin-top:6px;display:inline-block">📄 Celý legislativní proces na psp.cz</a></div>
+  <hr class="ftr-div">
+  <div class="ftr-leg"><span>© 2026 Poslanecká sněmovna Parlamentu České republiky</span><span>Design systém gov.cz v4.2 · Digitální a informační agentura</span></div>
+</div></footer>
+
+<script>
+function showSec(id, btn) {
+  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+  // Scroll active tab into view in the nav bar (mobile)
+  btn.scrollIntoView({behavior:'smooth', block:'nearest', inline:'center'});
+  // Then scroll page to top
+  setTimeout(function(){ window.scrollTo({top:0,behavior:'smooth'}); }, 10);
+}
+function toggleAcc(btn) {
+  const item = btn.parentElement;
+  item.classList.toggle('open');
+  btn.setAttribute('aria-expanded', item.classList.contains('open'));
+}
+function showInner(id, btn) {
+  btn.closest('.sec').querySelectorAll('.ipanel').forEach(p => p.classList.remove('active'));
+  btn.closest('.sec').querySelectorAll('.itab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+
+// eGov karty
+var ENODES = [
+  {icon:'🗂',name:'Národní katalog dat (NKD)',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 9',desc:'Centrální ISVS pro zveřejňování a vyhledávání dat veřejné správy. Integruje obsah lokálních katalogů všech správců a datových slovníků do Datového slovníku VS. NKOD se stane jeho technickou komponentou — správci katalogizují jednou, NKD rozlišuje otevřená vs. ostatní data dle metadat. Zprostředkovává podávání žádostí o řízený přístup. Správce: DIA.',rels:[['←','Lokální katalogy dat (harvestování obsahu)'],['←','Datový slovník agendy (vstup)'],['↔','NKOD (stává se komponentou NKD)'],['↔','AIS RPP Působnostní (propojení popisů)'],['→','Žadatelé — podávání žádostí o řízený přístup'],['→','Veřejnost — vyhledávání dat VS']]},
+  {icon:'🗺',name:'Geoportál České republiky',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 10',desc:'Jednotné přístupové místo k prostorovým datům a službám veřejné správy ČR. Dle důvodové zprávy bude vybudován jako významné rozšíření národního geoportálu INSPIRE — synergicky zajišťuje národní přístup k prostorovým datům i plnění povinností dle směrnice INSPIRE. Shromažďuje metadata prostorových dat orgánů veřejné správy, samospráv i univerzit bez ohledu na to, zda jde o data INSPIRE nebo ne. Buduje MŽP prostřednictvím CENIA. Náklady: 87 mil. Kč jednorázově, 17 mil. Kč/rok.',rels:[['←','Národní geoportál INSPIRE (rozšiřuje a integruje)'],['←','Resortní a tematické infrastruktury prostorových dat (ČÚZK, MMR…)'],['←','Správci dat, samosprávy, univerzity (publikují prostorová metadata)'],['→','Uživatelé prostorových dat — prohlížení, stahování, mapové úlohy']]},
+  {icon:'📖',name:'Datový slovník veřejné správy',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 9 odst. 3',desc:'Zastřešující slovník pojmů veřejné správy, tvořený agregací datových slovníků agend a správců dat. Součást Národního katalogu dat. Slouží k sémantické interoperabilitě.',rels:[['←','Datový slovník agendy (vstup, agregace)'],['←','Datový slovník správce dat (vstup)'],['→','Národní katalog dat (je jeho součástí)']]},
+  {icon:'📂',name:'Lokální katalog dat (LKD)',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 7–8',desc:'Povinný ISVS každého správce dat. Obsahuje datový slovník správce a metadata datových rozhraní. Průběžně aktualizován — změny se zapisují nejpozději do 7 pracovních dnů. Obsah se publikuje do NKD. Účinnost: 1. 1. 2029.',rels:[['←','Datový slovník agendy (přebírá pojmy)'],['←','Katalog datových rozhraní (je jeho součástí)'],['→','Národní katalog dat (publikuje obsah)'],['↔','AIS RPP Působnostní (propojení)']]},
+  {icon:'🔌',name:'Katalog datových rozhraní',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 7',desc:'Součást Lokálního katalogu dat. Popisuje technická rozhraní (API) každého ISVS — veřejná i neveřejná. Umožňuje jiným úřadům zjistit, jak technicky získat přístup k datům.',rels:[['←','Datový slovník (sémantická vazba)'],['→','Lokální katalog dat (je jeho součástí)'],['→','Referenční rozhraní VS (API v kontextu RRVS)'],['→','Ostatní úřady VS (spotřebitelé API)']]},
+  {icon:'🔐',name:'Infrastruktura řízeného přístupu',type:'Nově zřizováno',typeColor:'#1a4a7f',typeBg:'#dce7ff',top:'#2362a2',para:'§ 11–27',desc:'Soubor procesů a technických opatření umožňujících zabezpečené opakované užití chráněných dat (osobní údaje, obchodní tajemství, statistická důvěrnost). Přístup lze povolit pouze k datům v anonymizované podobě, nebo výjimečně v pseudonymizované. Data fyzicky neopustí prostředí správce — ven jdou jen výsledky analýz. Náklady: 53 mil. Kč jednorázově, 31 mil. Kč/rok. Účinnost: 1. 1. 2028.',rels:[['←','DGA čl. 3 (vymezení chráněných dat)'],['←','GDPR (podmínka: anonymizace / pseudonymizace)'],['↔','DIA (povolující orgán pro vícesprávcovské žádosti, § 12 písm. b)'],['↔','Správce dat (povolující orgán pro jednosprávcovské žádosti, § 12 písm. a)'],['↔','Příslušné subjekty MPSV, ČSÚ, GFŘ, ÚZIS (§ 12 písm. c, § 29)'],['→','Výzkumníci, kontroloři, pedagogové, firmy (žadatelé, § 13)']]},
+  {icon:'📋',name:'Datový slovník agendy',type:'Nová povinnost',typeColor:'#2d5a85',typeBg:'#e3f0fb',top:'#5c9ad1',para:'§ 8 odst. 1',desc:'Vytváří ohlašovatel agendy (subjekt registrovaný v RPP). Popisuje strukturu a význam dat vedených v rámci konkrétní agendy. Je podmnožinou datového slovníku správce dat. Účinnost: 1. 1. 2029.',rels:[['←','AIS RPP Působnostní (ohlašovatel je registrován)'],['→','Lokální katalog dat (je jeho součástí)'],['→','Datový slovník VS (agregován)']]},
+  {icon:'🌐',name:'Referenční rozhraní veřejné správy',type:'Existující — dotčeno',typeColor:'#444',typeBg:'#f0f0f0',top:'#888',para:'§ 4 odst. 2 písm. d) zákona č. 111/2009 Sb.',desc:'Páteřní propojovací vrstva eGovernmentu upravená zákonem o základních registrech (č. 111/2009 Sb.). Pravidla užívání stanovuje DIA zveřejněním ve Věstníku. Zákon o správě dat na RRVS navazuje tím, že správci dat popisují svá datová rozhraní v Katalogu datových rozhraní.',rels:[['←','Zákon č. 111/2009 Sb. (právní základ)'],['←','DIA (koordinuje, vydává pravidla ve Věstníku)'],['↔','Katalog datových rozhraní (API správců popsána v kontextu RRVS)'],['→','Agendové IS / ISVS (konzumují služby přes RRVS)']]},
+  {icon:'🗃',name:'AIS RPP Působnostní',type:'Existující — navazuje',typeColor:'#444',typeBg:'#f0f0f0',top:'#888',para:'AIS RPP Působnostní',desc:'Agendový informační systém Registru práv a povinností. Evidence agend a agendových údajů. Zákon na něj navazuje — ohlašovatelé agend povinně vytváří datové slovníky agend.',rels:[['↔','Datový slovník agendy (ohlašovatel tvoří slovník)'],['↔','Lokální katalog dat (propojení popisů)'],['→','Národní katalog dat (metadata agend)']]},
+  {icon:'📊',name:'Národní katalog otevřených dat (NKOD)',type:'Existující — integrováno do NKD',typeColor:'#444',typeBg:'#f0f0f0',top:'#888',para:'Zákon č. 106/1999 Sb.',desc:'Stávající katalog otevřených dat veřejné správy. Dle důvodové zprávy se NKOD stane technickou komponentou nově vzniklého NKD. Správci dat budou katalogizovat jednou — prostřednictvím lokálního katalogu dat. NKD bude data harvestovat a na základě metadat rozlišovat, zda jde o otevřená data (dle InfZ) nebo ostatní data. NKOD tak nezaniká, ale je pohltit NKD.',rels:[['→','Národní katalog dat (NKOD je jeho komponentou)'],['←','Lokální katalogy dat (harvestování — jedna katalogizace pro obojí)'],['←','Zákon č. 106/1999 Sb. — InfZ (definice otevřených dat)']]},
+  {icon:'🛰',name:'Národní geoportál INSPIRE',type:'Existující — bude rozšířen',typeColor:'#444',typeBg:'#f0f0f0',top:'#888',para:'§ 10',desc:'Stávající národní infrastruktura INSPIRE ve správě MŽP, provozovaná prostřednictvím CENIA. Zajišťuje primárně plnění povinností ČR dle směrnice INSPIRE. Geoportál ČR bude vybudován jako jeho významné rozšíření — nevzniká tedy zcela nový samostatný systém, ale rozšíření stávajícího.',rels:[['→','Geoportál ČR (je jeho základem — bude rozšířen)'],['←','Směrnice INSPIRE 2007/2/ES (plní povinnosti EU)'],['←','MŽP / CENIA (správce)']]}
+];
+
+var g = document.getElementById('egrid');
+ENODES.forEach(function(d) {
+  var rels = d.rels.map(function(r){return '<div class="ecard-rel"><span class="ecard-arr">'+r[0]+'</span><span>'+r[1]+'</span></div>';}).join('');
+  var el = document.createElement('div');
+  el.className = 'ecard';
+  el.innerHTML = '<div class="ecard-top" style="background:'+d.top+'"></div><div class="ecard-body"><div class="ecard-head"><div class="ecard-ico">'+d.icon+'</div><div class="ecard-meta"><div class="ecard-name">'+d.name+'</div><span class="ecard-type" style="color:'+d.typeColor+';background:'+d.typeBg+'">'+d.type+'</span><span class="ecard-para">'+d.para+'</span></div></div><p class="ecard-desc">'+d.desc+'</p><hr class="ecard-div"><div class="ecard-rels"><div class="ecard-rl">Vazby</div>'+rels+'</div></div>';
+  g.appendChild(el);
+});
+</script>
+</body>
+</html>
